@@ -13,6 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+import { useAuth } from '../../../../providers/auth-provider';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Enter a valid email address' })
@@ -21,6 +22,7 @@ const formSchema = z.object({
 type UserFormValue = z.infer<typeof formSchema>;
 
 export default function UserAuthForm() {
+  const { handleLogin } = useAuth();
   const router = useRouter();
   const [loading] = useState(false);
   const defaultValues = {
@@ -33,6 +35,7 @@ export default function UserAuthForm() {
 
   const onSubmit = async (data: UserFormValue) => {
     console.log('data', data);
+    handleLogin();
     router.push('/');
   };
 
