@@ -2,6 +2,7 @@ import FormPage from '@/pages/form';
 import NotFound from '@/pages/not-found';
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet, useRoutes } from 'react-router-dom';
+import ProtectedRoute from './protected-route';
 
 const DashboardLayout = lazy(
   () => import('@/components/layout/dashboard-layout')
@@ -28,12 +29,20 @@ export default function AppRouter() {
       ),
       children: [
         {
-          element: <DashboardPage />,
+          element: (
+            <ProtectedRoute allowedRoles={['admin']}>
+              <DashboardPage />
+            </ProtectedRoute>
+          ),
           index: true
         },
         {
           path: 'student',
-          element: <StudentPage />
+          element: (
+            <ProtectedRoute allowedRoles={['ciquan']}>
+              <StudentPage />
+            </ProtectedRoute>
+          )
         },
         {
           path: 'student/details',
