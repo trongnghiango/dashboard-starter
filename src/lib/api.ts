@@ -20,7 +20,6 @@ export async function getStudents(
       `https://api.slingacademy.com/v1/sample-data/users?offset=${offset}&limit=${pageLimit}` +
         (country ? `&search=${country}` : '')
     );
-    console.log({ res });
     return res.data;
   } catch (error) {
     console.log(error);

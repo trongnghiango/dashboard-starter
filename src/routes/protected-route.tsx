@@ -15,15 +15,16 @@ export default function ProtectedRoute({
   allowedRoles,
   children
 }: ProtectedRouteProps) {
-  const { currentUser, loading } = useAuth(); // Giả sử useAuth trả về loading
+  const { currentUser, authToken, loading } = useAuth(); // Giả sử useAuth trả về loading
   const navigate = useNavigate();
+  console.info('vkl', currentUser);
 
   useEffect(() => {
-    if (!loading && !currentUser) {
+    if (!loading && !authToken) {
       // Điều hướng tới trang đăng nhập nếu currentUser không tồn tại
       navigate('/login');
     }
-  }, [currentUser, loading, navigate]);
+  }, [authToken, loading, navigate]);
 
   // Nếu đang tải thông tin người dùng, có thể hiển thị Loading...
   if (loading) {
