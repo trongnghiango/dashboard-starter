@@ -19,11 +19,9 @@ export default function ProtectedRoute({
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && !currentUser) {
       // Điều hướng tới trang đăng nhập nếu currentUser không tồn tại
-      if (!currentUser) {
-        navigate('/login');
-      }
+      navigate('/login');
     }
   }, [currentUser, loading, navigate]);
 
