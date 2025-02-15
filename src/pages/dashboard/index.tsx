@@ -154,7 +154,12 @@ export default function DashboardPage() {
             </div>
           </TabsContent>
           <TabsContent value="analytics" className="space-y-4">
-            <p>ooooo</p>
+            <Card className="col-span-4">
+              <CardHeader>
+                <CardTitle>Overview</CardTitle>
+              </CardHeader>
+              <CardContent className="pl-2">{/* <Overview /> */}</CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>

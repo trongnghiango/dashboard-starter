@@ -1,9 +1,9 @@
-import PageHead from '@/components/shared/page-head';
-import { useGetStudents } from './queries/queries';
-import StudentsTable from './components/students-table';
-import { useSearchParams } from 'react-router-dom';
-import { DataTableSkeleton } from '@/components/shared/data-table-skeleton';
 import { Breadcrumbs } from '@/components/shared/breadcrumbs';
+import { DataTableSkeleton } from '@/components/shared/data-table-skeleton';
+import PageHead from '@/components/shared/page-head';
+import { useSearchParams } from 'react-router-dom';
+import StudentsTable from './components/students-table';
+import { useGetStudents } from './queries/queries';
 
 export default function StudentPage() {
   const [searchParams] = useSearchParams();
@@ -12,6 +12,7 @@ export default function StudentPage() {
   const country = searchParams.get('search') || null;
   const offset = (page - 1) * pageLimit;
   const { data, isLoading } = useGetStudents(offset, pageLimit, country);
+  console.info({ data });
   const users = data?.users;
   const totalUsers = data?.total_users; //1000
   const pageCount = Math.ceil(totalUsers / pageLimit);
