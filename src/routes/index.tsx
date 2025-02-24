@@ -14,6 +14,8 @@ const StudentDetailPage = lazy(
   () => import('@/pages/students/StudentDetailPage')
 );
 
+const ProfilePage = lazy(() => import('@/pages/profile'));
+
 // ----------------------------------------------------------------------
 
 export default function AppRouter() {
@@ -42,6 +44,15 @@ export default function AppRouter() {
             <ProtectedRoute allowedRoles={['admin']}>
               <StudentPage />
             </ProtectedRoute>
+          )
+        },
+        {
+          path: 'profile',
+          element: (
+            // <ProtectedRoute allowedRoles={['admin']}>
+            //   <ProfilePage />
+            // </ProtectedRoute>
+            <ProfilePage />
           )
         },
         {

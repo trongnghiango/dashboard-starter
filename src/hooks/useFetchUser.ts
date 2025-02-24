@@ -19,6 +19,8 @@ const useFetchUser = () => {
     }
   });
 
+  console.log({ data, error });
+
   return {
     data,
     error,

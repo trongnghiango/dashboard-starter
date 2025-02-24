@@ -14,6 +14,18 @@ export const navItems: NavItem[] = [
     label: 'Student'
   },
   {
+    title: 'Profile',
+    href: '/profile',
+    icon: 'user',
+    label: 'Profile'
+  },
+  {
+    title: 'Form',
+    href: '/form',
+    icon: 'user',
+    label: 'Form'
+  },
+  {
     title: 'Login',
     href: '/login',
     icon: 'login',
