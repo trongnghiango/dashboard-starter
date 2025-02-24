@@ -9,7 +9,7 @@ export async function getUser(): Promise<any> {
   //handle
   // if (!token) return [400, {}];
   // gia lap thoi gian de thuc hien xong 1 request
-  new Promise((resolve) => setTimeout(resolve, 1000)); // waiting 1000ms
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // waiting 1000ms
 
   const authToken = generateAuthToken();
 
@@ -22,7 +22,7 @@ function generateAuthToken() {
 }
 
 export async function login() {
-  new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   const authToken = generateAuthToken();
 

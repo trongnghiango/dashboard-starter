@@ -16,26 +16,34 @@ import * as z from 'zod';
 import { useAuth } from '../../../../providers/auth-provider';
 
 const formSchema = z.object({
-  email: z.string().email({ message: 'Enter a valid email address' })
+  email: z.string().email({ message: 'Enter a valid email address' }),
+  password: z.string()
 });
 
 type UserFormValue = z.infer<typeof formSchema>;
 
 export default function UserAuthForm() {
-  const { handleLogin } = useAuth();
+  const { handleLogin, loading: loadiing } = useAuth();
+  const [showPasswordSection, setShowPasswordSection] = useState(false);
   const router = useRouter();
   const [loading] = useState(false);
   const defaultValues = {
-    email: 'demo@gmail.com'
+    email: 'demo@gmail.com',
+    password: '123456'
   };
   const form = useForm<UserFormValue>({
     resolver: zodResolver(formSchema),
     defaultValues
   });
 
+  const handleButtonClick = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowPasswordSection(true);
+  };
+
   const onSubmit = async (data: UserFormValue) => {
-    console.log('data', data);
-    handleLogin();
+    await handleLogin();
+    if (loadiing) <>Loading</>;
     router.push('/');
   };
 
@@ -44,30 +52,61 @@ export default function UserAuthForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full space-y-2"
+          className="relative w-full space-y-4"
         >
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="Enter your email..."
-                    disabled={loading}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+          <div className="fixed-section">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="space-y-1">
+                  <FormLabel>Email address</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      placeholder="Enter your email..."
+                      disabled={loading}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div
+            className={`password-section ${showPasswordSection ? 'expand' : ''}`}
+          >
+            {showPasswordSection && (
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem className="space-y-1">
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Enter your password..."
+                        disabled={loading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             )}
-          />
-
-          <Button disabled={loading} className="ml-auto w-full" type="submit">
-            Continue With Email
-          </Button>
+          </div>
+          {showPasswordSection ? (
+            <Button disabled={loading} className="ml-auto w-full" type="submit">
+              Login
+            </Button>
+          ) : (
+            <Button className="ml-auto w-full" onClick={handleButtonClick}>
+              Nút Không Phải Submit
+            </Button>
+          )}
         </form>
       </Form>
       <div className="relative">

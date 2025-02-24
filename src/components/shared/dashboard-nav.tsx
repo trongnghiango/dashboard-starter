@@ -1,16 +1,16 @@
 'use client';
 import { Icons } from '@/components/ui/icons';
-import { cn } from '@/lib/utils';
-import { NavItem } from '@/types';
-import { Dispatch, SetStateAction } from 'react';
-import { useSidebar } from '@/hooks/use-sidebar';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip';
+import { useSidebar } from '@/hooks/use-sidebar';
+import { cn } from '@/lib/utils';
 import { usePathname } from '@/routes/hooks';
+import { NavItem } from '@/types';
+import { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 
 interface DashboardNavProps {

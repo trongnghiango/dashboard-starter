@@ -39,7 +39,7 @@ export default function AppRouter() {
         {
           path: 'student',
           element: (
-            <ProtectedRoute allowedRoles={['ciquan']}>
+            <ProtectedRoute allowedRoles={['admin']}>
               <StudentPage />
             </ProtectedRoute>
           )

@@ -74,3 +74,30 @@
     font-family: 'Montserrat', sans-serif;
   }
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.password-section {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  opacity: 0;
+}
+
+.password-section.expand {
+  max-height: 100px; /* Điều chỉnh chiều cao tối đa nếu cần */
+  opacity: 1;
+}
+
+
+.fixed-section {
+  position: sticky;
+  top: 0; /* Giữ phần trên cố định */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Đảm bảo phần này luôn ở trên */
+}

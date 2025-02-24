@@ -17,7 +17,6 @@ export default function ProtectedRoute({
 }: ProtectedRouteProps) {
   const { currentUser, authToken, loading } = useAuth(); // Giả sử useAuth trả về loading
   const navigate = useNavigate();
-  console.info('vkl', currentUser);
 
   useEffect(() => {
     if (!loading && !authToken) {
