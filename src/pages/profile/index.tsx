@@ -13,7 +13,7 @@ export default function UserProfile() {
   return (
     <div>
       <h1>User Profile</h1>
-      {/* <pre>{JSON.stringify(data || userData, null, 2)}</pre> */}
+      <pre>{JSON.stringify(data || userData, null, 2)}</pre>
     </div>
   );
 }
